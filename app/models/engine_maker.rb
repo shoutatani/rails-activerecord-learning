@@ -1,0 +1,2 @@
+class EngineMaker < Maker
+end

@@ -10,23 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_08_135725) do
+ActiveRecord::Schema.define(version: 2018_08_09_134747) do
 
-  create_table "car_makers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "engines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "engine_name"
+    t.integer "cc"
+    t.bigint "maker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_engines_on_maker_id"
+  end
+
+  create_table "fuels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "fuel_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "makers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "type"
     t.string "maker_name"
     t.string "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "cars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "car_name"
-    t.decimal "price", precision: 10
-    t.bigint "car_maker_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["car_maker_id"], name: "index_cars_on_car_maker_id"
-  end
-
-  add_foreign_key "cars", "car_makers"
+  add_foreign_key "engines", "makers"
 end

@@ -1,3 +1,2 @@
-class CarMaker < ApplicationRecord
-  has_many :cars
+class CarMaker < Maker
 end
