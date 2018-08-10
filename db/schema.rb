@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_09_134747) do
+ActiveRecord::Schema.define(version: 2018_08_10_150618) do
+
+  create_table "cars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "car_name"
+    t.integer "price"
+    t.bigint "maker_id"
+    t.bigint "engine_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["engine_id"], name: "index_cars_on_engine_id"
+    t.index ["maker_id"], name: "index_cars_on_maker_id"
+  end
 
   create_table "engines", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "engine_name"
@@ -18,6 +29,8 @@ ActiveRecord::Schema.define(version: 2018_08_09_134747) do
     t.bigint "maker_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "fuel_id"
+    t.index ["fuel_id"], name: "index_engines_on_fuel_id"
     t.index ["maker_id"], name: "index_engines_on_maker_id"
   end
 
@@ -35,5 +48,8 @@ ActiveRecord::Schema.define(version: 2018_08_09_134747) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cars", "engines"
+  add_foreign_key "cars", "makers"
+  add_foreign_key "engines", "fuels"
   add_foreign_key "engines", "makers"
 end
