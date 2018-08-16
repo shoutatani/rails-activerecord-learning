@@ -1,0 +1,23 @@
+attributes:
+  - primary_key
+  - inheritance
+  - content
+  - foreign_key
+disconnected: true
+filename: erd
+filetype: png
+indirect: true
+inheritance: true
+markup: false
+notation: simple
+orientation: vertical
+polymorphism: true
+sort: false
+warn: true
+title: Rails ActiveRecord's relationships
+exclude: null
+only: null
+only_recursion_depth: null
+prepend_primary: true
+cluster: true
+splines: spline
