@@ -7,4 +7,6 @@ class Car < ApplicationRecord
   
   has_many :car_designers
   has_many :designers, through: :car_designers
+
+  has_and_belongs_to_many :engineers
 end
